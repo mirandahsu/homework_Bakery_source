@@ -1,0 +1,151 @@
+Source
+
+package week1;
+
+public class Bakery {
+	private String name;
+	private int blacktea;
+	private int greentea;
+	private int milktea;
+	private int sum;
+	private double sumMember;
+	private double sumDiscount;
+	private double sumBoth;
+	
+	
+	public Bakery(String name, int blacktea, int greentea, int milktea) {
+		this.name=name;
+		this.blacktea=blacktea;
+		this.greentea=greentea;
+		this.milktea=milktea;
+		
+		this.sum=(blacktea*40)+(greentea*40)+(milktea*60);
+		this.sumMember=((blacktea*40)+(greentea*40)+(milktea*60))*0.9;
+		this.sumDiscount=((blacktea*40)+(greentea*40)+(milktea*60))*0.95;
+		this.sumBoth=((blacktea*40)+(greentea*40)+(milktea*60))*0.95*0.9;
+		
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getBlacktea() {
+		return blacktea;
+	}
+
+	public void setBlacktea(int blacktea) {
+		this.blacktea = blacktea;
+	}
+
+	public int getGreentea() {
+		return greentea;
+	}
+
+	public void setGreentea(int greentea) {
+		this.greentea = greentea;
+	}
+
+	public int getMilktea() {
+		return milktea;
+	}
+
+	public void setMilktea(int milktea) {
+		this.milktea = milktea;
+	}
+
+	public int getSum() {
+		return sum;
+	}
+	
+	public double getSumMember() {
+		return sumMember;
+	}
+
+	public double getSumDiscount() {
+		return sumDiscount;
+	}
+
+	public double getSumBoth() {
+		return sumBoth;
+	}
+
+	String showSum() {
+		return"顧客姓名："+getName()+
+				"\n紅茶："+getBlacktea()+
+				"\n綠茶："+getGreentea()+
+				"\n奶茶："+getMilktea()+
+				"\n合計："+getSum();
+	}
+	String showSumMember() {
+		return"顧客姓名："+getName()+
+				"\n紅茶："+getBlacktea()+
+				"\n綠茶："+getGreentea()+
+				"\n奶茶："+getMilktea()+
+				"\n會員9折"+
+				"\n合計："+getSumMember();
+	}
+	String showSumDiscount() {
+		return"顧客姓名："+getName()+
+				"\n紅茶："+getBlacktea()+
+				"\n綠茶："+getGreentea()+
+				"\n奶茶："+getMilktea()+
+				"\n折價券95折"+
+				"\n合計："+getSumDiscount();
+	}
+	String showSumBoth() {
+		return"顧客姓名："+getName()+
+				"\n紅茶："+getBlacktea()+
+				"\n綠茶："+getGreentea()+
+				"\n奶茶："+getMilktea()+
+				"\n會員9折"+
+				"\n折價券95折"+
+				"\n合計："+getSumBoth();
+	}
+	
+	
+}
+=============Button 確認============================
+
+		JButton btnNewButton = new JButton("確認");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String Name=name.getText();
+				String Blacktea=blacktea.getText();
+				String Greentea=greentea.getText();
+				String Milktea=milktea.getText();
+				
+				
+				Integer B=new Integer(Blacktea);
+				Integer G=new Integer(Greentea);
+				Integer M=new Integer(Milktea);
+				Bakery b=new Bakery(Name,B,G,M);
+				show.setText(b.showSum());
+				
+				if(member.isSelected())
+					show.setText(b.showSumMember());
+				if(discount.isSelected())
+					show.setText(b.showSumDiscount());
+				if(member.isSelected() && discount.isSelected())
+					show.setText(b.showSumBoth());
+		}
+		});
+===============Button 清除============================
+		JButton 清除 = new JButton("清除");
+		清除.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				name.setText("");
+				blacktea.setText("");
+				greentea.setText("");
+				milktea.setText("");
+				member.setSelected(false);
+				discount.setSelected(false);
+				show.setText("");
+			}
+		});
